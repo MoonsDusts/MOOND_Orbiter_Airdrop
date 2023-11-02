@@ -35,8 +35,8 @@ import { THEME } from "@/types";
 
 const AirdropCard = () => {
   const { openConnectModal } = useConnectModal();
-  // const { address } = useAccount();
-  const address = "0x5579718eba9128f7a9b6316e81c6f867b44754e3";
+  const { address } = useAccount();
+  // const address = "0x5579718eba9128f7a9b6316e81c6f867b44754e3";
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
   const { mode } = useThemeMode();
