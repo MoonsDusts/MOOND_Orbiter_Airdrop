@@ -28,6 +28,10 @@ import TwitterSVG from "./svg/Twitter";
 import GlobeSVG from "./svg/Globe";
 import Metamask from "@/assets/Metamask.svg";
 import InfoCard from "./InfoCard";
+import OrbiterDark from "@/assets/orbiter-dark.png";
+import OrbiterWhite from "@/assets/orbiter-white.png";
+import useThemeMode from "@/hooks/useThemeMode";
+import { THEME } from "@/types";
 
 const AirdropCard = () => {
   const { openConnectModal } = useConnectModal();
@@ -35,6 +39,7 @@ const AirdropCard = () => {
   const address = "0x5579718eba9128f7a9b6316e81c6f867b44754e3";
   const { chain } = useNetwork();
   const { switchNetworkAsync } = useSwitchNetwork();
+  const { mode } = useThemeMode();
 
   const publicClient = usePublicClient({ chainId: polygonMumbai.id });
   const { data: walletClient } = useWalletClient({ chainId: polygonMumbai.id });
@@ -179,13 +184,24 @@ const AirdropCard = () => {
           label="Available Airdrop"
           value={airdropped ? 0n : (airdrop as any)?.[0]}
           icon={
-            <Image
-              src={MOOND.src}
-              width={MOOND.width}
-              height={MOOND.height}
-              alt="moond"
-              className="w-[40px]"
-            />
+            <>
+              <Image
+                src={(mode === THEME.DARK ? OrbiterDark : OrbiterWhite).src}
+                width={(mode === THEME.DARK ? OrbiterDark : OrbiterWhite).width}
+                height={
+                  (mode === THEME.DARK ? OrbiterDark : OrbiterWhite).height
+                }
+                alt="moond"
+                className="w-[40px]"
+              />
+              <Image
+                src={MOOND.src}
+                width={MOOND.width}
+                height={MOOND.height}
+                alt="nova"
+                className="w-[20px] -mt-2"
+              />
+            </>
           }
           symbol="MOOND"
           blue
@@ -200,18 +216,27 @@ const AirdropCard = () => {
           icon={
             <>
               <Image
+                src={(mode === THEME.DARK ? OrbiterDark : OrbiterWhite).src}
+                width={(mode === THEME.DARK ? OrbiterDark : OrbiterWhite).width}
+                height={
+                  (mode === THEME.DARK ? OrbiterDark : OrbiterWhite).height
+                }
+                alt="moond"
+                className="w-[40px]"
+              />
+              <Image
                 src={MOOND.src}
                 width={MOOND.width}
                 height={MOOND.height}
-                alt="moond"
-                className="w-[40px]"
+                alt="nova"
+                className="w-[20px] -mt-2"
               />
               <Image
                 src={NOVA.src}
                 width={NOVA.width}
                 height={NOVA.height}
                 alt="nova"
-                className="w-[20px] -mt-2"
+                className="w-[20px] -mt-2 ml-1"
               />
             </>
           }
