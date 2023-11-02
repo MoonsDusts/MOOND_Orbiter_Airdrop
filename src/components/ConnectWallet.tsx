@@ -1,6 +1,6 @@
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 import { Address, useAccount, useBalance } from "wagmi";
-import { polygonMumbai } from "viem/chains";
+import { arbitrumNova } from "viem/chains";
 import Image from "next/image";
 
 import { MOOND_TOKEN_ADDR } from "@/contracts";
@@ -11,8 +11,8 @@ const ConnectWallet = () => {
   const { openAccountModal } = useAccountModal();
   const { address } = useAccount();
   const { data: balance } = useBalance({
-    token: MOOND_TOKEN_ADDR[polygonMumbai.id] as Address,
-    chainId: polygonMumbai.id,
+    token: MOOND_TOKEN_ADDR[arbitrumNova.id] as Address,
+    chainId: arbitrumNova.id,
     address,
     watch: true,
   });
