@@ -32,6 +32,7 @@ import OrbiterDark from "@/assets/orbiter-dark.png";
 import OrbiterWhite from "@/assets/orbiter-white.png";
 import useThemeMode from "@/hooks/useThemeMode";
 import { THEME } from "@/types";
+import { useRouter } from "next/router";
 
 const AirdropCard = () => {
   const { openConnectModal } = useConnectModal();
@@ -47,6 +48,8 @@ const AirdropCard = () => {
   const [left, setLeft] = useState(0);
 
   const [firework, setFirework] = useState(false);
+
+  const router = useRouter();
 
   const ref = useRef<FireworksHandlers>(null);
 
@@ -100,6 +103,9 @@ const AirdropCard = () => {
         toast.success("Airdropped successfully");
 
         launch();
+        setTimeout(() => {
+          router.push("https://rcpswap.com");
+        }, 10000);
       } catch (err) {
         console.log(err);
         toast.error(
